@@ -1,0 +1,68 @@
+include-file = ~/.i3/polybar/colors.conf
+
+;;;;;;;;; BAR BOTTOM ;;;;;;;;;
+[bar/bottom]
+background = ${colors.bar_bg}
+border-bottom-size = 2
+border-top-size = 2
+border-color = ${colors.bar_bg}
+bottom = true
+fixed-center = false
+foreground = ${colors.foreground}
+height = 24
+
+
+;;;;;;;;; MODULES ORDER ;;;;;;;;;
+modules-left = i3_inicio i3 sep_esq_cor1_bg sep_esq_bg_cor1
+modules-center = 
+modules-right = sep_dir_bg_cor1 sep_dir_cor1_bg sep_dir_bg_cor1 cpu sep_dir_cor1_bg sep_dir_bg_cor3 filesystem sep_dir_cor3_bg sep_dir_bg_cor4 memory sep_dir_cor4_bg sep_dir_bg_cor3 volume sep_dir_cor3_bg sep_dir_bg_cor4 date sep_dir_cor4_bg sep_dir_bg_cor1 time
+
+include-file = ~/.i3/polybar/fonts.conf
+
+include-file = ~/.i3/polybar/tray.conf
+
+include-file = ~/.i3/polybar/separadores.conf
+
+include-file = ~/.i3/polybar/module_i3.conf
+
+include-file = ~/.i3/polybar/module_cpu.conf
+
+include-file = ~/.i3/polybar/module_filesystem.conf
+
+include-file = ~/.i3/polybar/module_memory.conf
+
+include-file = ~/.i3/polybar/module_network.conf
+
+include-file = ~/.i3/polybar/module_datetime.conf
+
+include-file = ~/.i3/polybar/module_volume.conf
+
+;;;;;;;;; BAR TOP;;;;;;;;;
+[bar/top]
+background = ${colors.bar_bg}
+border-bottom-size = 2
+border-top-size = 2
+border-color = ${colors.bar_bg}
+bottom = false
+foreground = ${colors.foreground}
+height = 24
+
+;;;;;;;;; MODULES ORDER ;;;;;;;;;
+modules-left = title sep_esq_bg_cor1 sep_esq_cor1_bg sep_esq_bg_cor1
+modules-center = 
+modules-right = sep_dir_bg_cor1 sep_dir_cor1_bg sep_dir_bg_cor3 network_ip sep_dir_cor3_bg sep_dir_bg_cor4 network_speed sep_dir_cor4_bg sep_dir_bg_cor3 mpd sep_dir_cor3_bg sep_dir_bg_cor4 mpd_controls sep_dir_cor4_bg sep_dir_bg_cor3 powermenu
+
+include-file = ~/.i3/polybar/fonts.conf
+
+include-file = ~/.i3/polybar/module_mpd.conf
+
+include-file = ~/.i3/polybar/module_window_title.conf
+
+include-file = ~/.i3/polybar/module_power_menu.conf
+
+[settings]
+screenchange-reload = true
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
