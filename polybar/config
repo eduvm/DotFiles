@@ -15,7 +15,7 @@ height = 24
 ;;;;;;;;; MODULES ORDER ;;;;;;;;;
 modules-left = i3_inicio i3 sep_esq_cor1_bg sep_esq_bg_cor1
 modules-center = 
-modules-right = sep_dir_bg_cor1 sep_dir_cor1_bg sep_dir_bg_cor1 cpu sep_dir_cor1_bg sep_dir_bg_cor3 filesystem sep_dir_cor3_bg sep_dir_bg_cor4 memory sep_dir_cor4_bg sep_dir_bg_cor3 volume sep_dir_cor3_bg sep_dir_bg_cor4 date sep_dir_cor4_bg sep_dir_bg_cor1 time
+modules-right = sep_dir_bg_cor1 sep_dir_cor1_bg sep_dir_bg_cor1 cpu sep_dir_cor1_bg sep_dir_bg_cor3 filesystem sep_dir_cor3_bg sep_dir_bg_cor4 memory sep_dir_cor4_bg volume sep_dir_bg_cor4 date sep_dir_cor4_bg sep_dir_bg_cor1 time
 
 include-file = ~/.i3/polybar/fonts.conf
 
