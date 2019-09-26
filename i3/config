@@ -5,7 +5,7 @@
 set $mod Mod4
 
 # Font
-font pango:'Source Code Pro for Powerline' 12
+font pango:'Fira Mono for Powerline' 12
 
 # Get Xresources        i3 name                 X name                  Backup
 set_from_resource       $arc_foreground         arc_foreground          #FFFFFF
@@ -28,8 +28,8 @@ bindsym $mod+Return exec terminator
 bindsym $mod+Shift+q kill
 
 # Rofi
-bindsym $mod+d exec --no-startup-id appsmenu
-bindsym $mod+Tab exec rofi -show window
+bindsym $mod+d exec --no-startup-id rofi -no-lazy-grab -show run -theme themes/appsmenu.rasi
+bindsym $mod+Tab exec rofi -show window -show-icons -theme themes/appsmenu.rasi
 bindsym $mod+F2 exec rofi -show combi -show-icons -theme themes/appsmenu.rasi
 bindsym $mod+x exec rofi -no-lazy-grab -theme themes/appsmenu.rasi -show Kill -modi Kill:$HOME/.config/rofi/scripts/kill.sh
 bindsym XF86PowerOff exec --no-startup-id powermenu
@@ -158,15 +158,17 @@ for_window [class="\w*"] 		border pixel 1
 for_window [window_role="pop-up"] 	floating enable; border none
 for_window [window_role="bubble"] 	floating enable; border none
 for_window [class="Firefox"]		border none
+for_window [class="Yad" title="yad-calendar"] floating enable border none
 
 exec --no-startup-id parcellite &
 exec --no-startup-id numlockx on &
 exec --no-startup-id xset r rate 220 50 &
 #exec --no-startup-id xcompmgr -fF -D2 &
 exec --no-startup-id compton --config ~/.i3/compton/compton.conf &
-exec --no-startup-id feh --randomize --bg-fill ~/Imagens/Wallpapers/*
 
-#exec_always --no-startup-id	"pkill -f \"autoname_workspace.py\"
+exec --no-startup-id feh --randomize --bg-fill ~/Imagens/Wallpapers/*
+exec --no-startup-id systemctl --user start changewallpaper.timer
+exec --no-startup-id systemctl --user start changewallpaper.service
 
 exec_always --no-startup-id	~/.i3/scripts/autoname_workspaces.py &
 
