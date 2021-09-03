@@ -81,29 +81,72 @@ bindsym $mod+space focus mode_toggle
 # focus the parent container
 bindsym $mod+a focus parent
 
+set $ws1 number 1
+set $ws2 number 2
+set $ws3 number 3
+set $ws4 number 4
+set $ws5 number 5
+set $ws6 number 6
+set $ws7 number 7
+set $ws8 number 8
+set $ws9 number 9
+set $ws0 number 0
+
+# Multi monitor
+set $first_monitor HDMI-A-2
+set $second_monitor HDMI-1-2
+
+workspace 1 output $first_monitor
+workspace 2 output $first_monitor
+workspace 3 output $first_monitor
+workspace 4 output $first_monitor
+workspace 5 output $first_monitor
+workspace 6 output $second_monitor
+workspace 7 output $second_monitor
+workspace 8 output $second_monitor
+workspace 9 output $second_monitor
+workspace 0 output $second_monitor
+
 # switch to workspace
-bindsym $mod+1 workspace number 1
-bindsym $mod+2 workspace number 2
-bindsym $mod+3 workspace number 3
-bindsym $mod+4 workspace number 4
-bindsym $mod+5 workspace number 5
-bindsym $mod+6 workspace number 6
-bindsym $mod+7 workspace number 7
-bindsym $mod+8 workspace number 8
-bindsym $mod+9 workspace number 9
-bindsym $mod+0 workspace number 10
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws0
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace number 1
-bindsym $mod+Shift+2 move container to workspace number 2
-bindsym $mod+Shift+3 move container to workspace number 3
-bindsym $mod+Shift+4 move container to workspace number 4
-bindsym $mod+Shift+5 move container to workspace number 5
-bindsym $mod+Shift+6 move container to workspace number 6
-bindsym $mod+Shift+7 move container to workspace number 7
-bindsym $mod+Shift+8 move container to workspace number 8
-bindsym $mod+Shift+9 move container to workspace number 9
-bindsym $mod+Shift+0 move container to workspace number 10
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws0
+
+bindsym $mod+Control+1 exec --no-startup-id ~/.i3/scripts/sw.py $ws1
+bindsym $mod+Control+2 exec --no-startup-id ~/.i3/scripts/sw.py $ws2
+bindsym $mod+Control+3 exec --no-startup-id ~/.i3/scripts/sw.py $ws3
+bindsym $mod+Control+4 exec --no-startup-id ~/.i3/scripts/sw.py $ws4
+bindsym $mod+Control+5 exec --no-startup-id ~/.i3/scripts/sw.py $ws5
+bindsym $mod+Control+6 exec --no-startup-id ~/.i3/scripts/sw.py $ws6
+bindsym $mod+Control+7 exec --no-startup-id ~/.i3/scripts/sw.py $ws7
+bindsym $mod+Control+8 exec --no-startup-id ~/.i3/scripts/sw.py $ws8
+bindsym $mod+Control+9 exec --no-startup-id ~/.i3/scripts/sw.py $ws9
+bindsym $mod+Control+0 exec --no-startup-id ~/.i3/scripts/sw.py $ws0
+
+# Switch window/workspace with mod+scroll and mod+shift scroll
+bindsym --whole-window --border $mod+shift+button4 focus left
+bindsym --whole-window --border $mod+shift+button5 focus right
+bindsym --whole-window --border $mod+button4 workspace prev
+bindsym --whole-window --border $mod+button5 workspace next
 
 # Reload or exit i3
 bindsym $mod+Shift+c 	reload
@@ -137,9 +180,9 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Gaps
-smart_borders no_gaps
+gaps inner 5
 smart_gaps on
-gaps inner 6
+smart_borders no_gaps
 #gaps outer 6
 
 # Default colors ...        border   	backgr.  	text  		indicator
@@ -155,21 +198,34 @@ for_window [class="^.*"] border pixel 1
 new_window 1pixel
 
 for_window [class="\w*"] 		border pixel 1
+
 for_window [window_role="pop-up"] 	floating enable; border none
 for_window [window_role="bubble"] 	floating enable; border none
+
+for_window [title=".*Emulator.*"] floating enable; border none
+
+for_window [class="Qalculate-gtk"] floating enable
+
+for_window [class="vysor"] floating enable
+
 for_window [class="Firefox"]		border none
 for_window [class="Yad" title="yad-calendar"] floating enable border none
 
-exec --no-startup-id parcellite &
-exec --no-startup-id numlockx on &
+for_window [class="^jetbrains-.+"][window_type=dialog] focus
+
+exec --no-startup-id sudo wpa_supplicant -B -i wlp5s0 -c /etc/wpa_supplicant/wpa_vodafone &
+
 exec --no-startup-id xset r rate 220 50 &
-#exec --no-startup-id xcompmgr -fF -D2 &
+
+exec --no-startup-id xrandr --output HDMI-A-2 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-1-2 --mode 1920x1080 --pos 1920x0 --rotate normal
+
 exec --no-startup-id compton --config ~/.i3/compton/compton.conf &
 
-exec --no-startup-id feh --randomize --bg-fill ~/Imagens/Wallpapers/*
+exec_always --no-startup-id ~/.i3/polybar/launch.sh &
+
+exec --no-startup-id numlockx on &
+
+exec --no-startup-id parcellite &
+
 exec --no-startup-id systemctl --user start changewallpaper.timer
 exec --no-startup-id systemctl --user start changewallpaper.service
-
-exec_always --no-startup-id	~/.i3/scripts/autoname_workspaces.py &
-
-exec_always --no-startup-id     ~/.i3/polybar/launch.sh &

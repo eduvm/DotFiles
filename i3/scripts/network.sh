@@ -9,7 +9,7 @@
 full=""
 status=0
 
-interface="${BLOCK_INSTANCE:-"enp7s0"}"
+interface="${BLOCK_INSTANCE:-"wlp5s0"}"
 netPath=/sys/class/net
 interfacePath=`echo $netPath/$interface`
 

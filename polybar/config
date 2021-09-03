@@ -9,7 +9,7 @@ bottom = true
 fixed-center = false
 foreground = ${colors.foreground}
 height = 24
-
+monitor = ${env:MONITOR:HDMI-0}
 
 ;;;;;;;;; MODULES ORDER ;;;;;;;;;
 modules-left = i3_inicio i3 sep_esq_cor1_bg sep_esq_bg_cor1
@@ -45,6 +45,7 @@ border-color = ${colors.bar_bg}
 bottom = false
 foreground = ${colors.foreground}
 height = 24
+monitor = ${env:MONITOR:HDMI-0}
 
 ;;;;;;;;; MODULES ORDER ;;;;;;;;;
 modules-left = title sep_esq_bg_cor1 sep_esq_cor1_bg sep_esq_bg_cor1
